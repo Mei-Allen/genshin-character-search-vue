@@ -1,0 +1,31 @@
+@import "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css";
+@import "https://fonts.googleapis.com/css2?family=Forum&family=IM+Fell+English+SC&family=Philosopher:ital,wght@1,700&display=swap";
+@import "tailwindcss";
+
+:root {
+  --gold: #c89b3c;
+  --gold-light: #e9c26c;
+  --gold-dark: #8b6914;
+  --sidebar-bg: #0f0f23;
+  --page-bg: #f1f5f9;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  font-family: 'Forum', 'Noto Sans SC', serif;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #1a1a2e; }
+::-webkit-scrollbar-thumb { background: #c89b3c; border-radius: 3px; }
+
+.leaflet-container {
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 0.75rem;
+  z-index: 1;
+}
+
+.fade-enter-active, .fade-leave-active { transition: opacity 0.25s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
