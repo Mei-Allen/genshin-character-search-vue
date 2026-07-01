@@ -1,8 +1,10 @@
 /** API 请求层 - 所有后端接口封装 */
 
-// 本地开发用空字符串，靠 Vite proxy 转发 /api
-// 生产环境用完整后端 URL，在 Render 环境变量中设置 VITE_BACKEND_URL
-const BACKEND = import.meta.env.VITE_BACKEND_URL || ''
+// 本地开发用空字符串 + Vite proxy
+// 生产环境（vite build）直接用 Render 后端地址
+const BACKEND = import.meta.env.PROD
+  ? 'https://genshin-character-search-vue.onrender.com'
+  : ''
 const BASE = BACKEND ? `${BACKEND}/api` : '/api'
 
 /** 构建完整的 API URL，给不能走 api 对象的直接 fetch 调用使用 */
