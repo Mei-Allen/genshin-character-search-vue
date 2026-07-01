@@ -29,6 +29,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { apiUrl } from '../api'
 
 const route = useRoute()
 const router = useRouter()
@@ -46,7 +47,7 @@ const elementColor = computed(() => {
 onMounted(async () => {
   const name = route.params.name
   try {
-    const res = await fetch(`/api/characters/by-name/${encodeURIComponent(name)}`)
+    const res = await fetch(apiUrl(`/characters/by-name/${encodeURIComponent(name)}`))
     if (!res.ok) throw new Error('not found')
     character.value = await res.json()
 

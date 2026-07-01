@@ -128,6 +128,7 @@
 import { ref, computed, onMounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import * as echarts from 'echarts'
+import { apiUrl } from '../api'
 
 const route = useRoute()
 const character = ref(null)
@@ -234,7 +235,7 @@ function initCharts() {
 onMounted(async () => {
   const name = route.params.name
   try {
-    const res = await fetch(`/api/characters/by-name/${encodeURIComponent(name)}`)
+    const res = await fetch(apiUrl(`/characters/by-name/${encodeURIComponent(name)}`))
     if (!res.ok) throw new Error('not found')
     character.value = await res.json()
 

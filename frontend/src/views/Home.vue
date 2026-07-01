@@ -155,6 +155,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { apiUrl } from '../api'
 
 const router = useRouter()
 const searchQuery = ref('')
@@ -180,7 +181,7 @@ watch(searchQuery, (val) => {
   if (val.length < 1) { suggestions.value = []; return }
   debounceTimer = setTimeout(async () => {
     try {
-      const res = await fetch(`/api/characters?search=${encodeURIComponent(val)}&page_size=5`)
+      const res = await fetch(apiUrl(`/characters?search=${encodeURIComponent(val)}&page_size=5`))
       const data = await res.json()
       suggestions.value = (data.data || []).map(d => d.character_name)
     } catch (e) { suggestions.value = [] }

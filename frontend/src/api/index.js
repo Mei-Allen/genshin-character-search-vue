@@ -1,6 +1,14 @@
 /** API 请求层 - 所有后端接口封装 */
 
-const BASE = '/api'
+// 本地开发用空字符串，靠 Vite proxy 转发 /api
+// 生产环境用完整后端 URL，在 Render 环境变量中设置 VITE_BACKEND_URL
+const BACKEND = import.meta.env.VITE_BACKEND_URL || ''
+const BASE = BACKEND ? `${BACKEND}/api` : '/api'
+
+/** 构建完整的 API URL，给不能走 api 对象的直接 fetch 调用使用 */
+export function apiUrl(path) {
+  return `${BASE}${path}`
+}
 
 async function request(url, options = {}) {
   const res = await fetch(`${BASE}${url}`, {
