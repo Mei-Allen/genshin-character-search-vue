@@ -16,5 +16,4 @@ dist/
 .DS_Store
 Thumbs.db
 
-# DB files (MySQL is external, SQLite is dev-only)
-*.db
+
